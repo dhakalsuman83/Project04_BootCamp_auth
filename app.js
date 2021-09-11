@@ -1,6 +1,8 @@
 require('dotenv').config()    //requiring the .env file
 const express = require('express');
-const db = require('./database')
+const db = require('./database');
+
+
 const app = express();
 
 //just for testing the connection of the database
