@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs')
 
 
 router.get("/",(req,res)=> {
-    res.render("//ejsfile")
+    console.log(req.session)
+    res.render("../views/pages/login")
 })
 
 router.post("/",(req , res) => {
@@ -38,6 +39,10 @@ router.post("/",(req , res) => {
         console.log(error)
         res.json(error)
     })
+})
+
+router.get("/dashboard",(req,res)=> {
+    //res.render("../views/pages/login")
 })
 
 
