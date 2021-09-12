@@ -15,6 +15,11 @@ app.get('/', async (req, res) => {
     }
 })
 
+//router middleware
+app.use("/login", login_route)
+
+
+
 
 const port = process.env.PORT || 3000
 
