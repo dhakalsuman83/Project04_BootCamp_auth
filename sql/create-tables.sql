@@ -1,12 +1,14 @@
 --dropping the tables if exists
 DROP TABLE if EXISTS users;  
 DROP TABLE if EXISTS schedules;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 
 
 --creating the tables
 
 CREATE TABLE users(
-    user_id VARCHAR(255) NOT NULL,
+    user_id uuid DEFAULT uuid_generate_v4 (),
     surname VARCHAR(255) NOT NULL,
     firstname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -16,7 +18,7 @@ CREATE TABLE users(
 
 CREATE TABLE schedules(
     schedule_id INT GENERATED ALWAYS AS IDENTITY,
-    user_id VARCHAR(255) NOT NULL,
+    user_id uuid NOT NULL,
     day VARCHAR(255) NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
@@ -26,4 +28,3 @@ CREATE TABLE schedules(
             REFERENCES users(user_id)
             ON DELETE CASCADE
 );
-
