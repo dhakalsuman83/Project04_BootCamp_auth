@@ -1,0 +1,31 @@
+<div>
+    <% if(typeof message !== undefined){ %>
+        <p style="color : red;"><%= message%></p>
+    <%}%>
+</div>
+<form action="/register" method="POST">
+    <div>
+        <label for="first_name">Firstname:</label>
+        <input id="first_name" type="text" name="first_name">
+    </div>
+    <div>
+        <label for="last_name">Lastname:</label>
+        <input id="last_name" type="text" name="last_name">
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password">
+    </div>
+    <div>
+        <label for="confirm_password">Confirm Password:</label>
+        <input id="confirm_password" type="password" name="confirm_password">
+    </div>
+    <div>
+        <button type="submit">Sign Up</button>
+    </div>
+</form>
+<a href='/login'>LogIn</a>
