@@ -1,16 +1,29 @@
 require('dotenv').config()    //requiring the .env file
 const express = require('express');
-const db = require('./database');
+const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
-const login_route = require('./routes/login_route')
-const ejs = require('ejs')
+const loginRouter= require('./routes/login')
+const registerRouter = require('./routes/register')
+const homeRouter = require('./routes/home')
+const { routeToLogin, routeToHome } = require('./middlewares/middleware')
+const userDetails = require('./middlewares/userDetails')
+const logoutRouter = require('./routes/logout')
+//const ejs = require('ejs')
 
 
 const app = express();
 
-//engines
-app.set('view engine', 'ejs');
-app.set('views', './views')
+//setting view enginne and layouts
+app.use(expressLayouts)
+app.set("layout", "./layouts/main")
+
+app.set('view engine', 'ejs')
+
+//body parsers
+app.use(express.json())
+app.use(express.urlencoded({
+    extended:true
+}))
 
 //var for session
 const Time = 1000 * 60 * 60 * 1;
@@ -19,33 +32,34 @@ app.use(session({
     name : 'mr_csid',
     resave : false,
     saveUninitialized : false,
-    secret : 'webcliuksebckscn12kjcb',
+    secret : process.env.SECRET_SESS_KEY,
     cookie :{
         maxAge : Time,
         sameSite : true,
     }
 }))
 
-//just for testing the connection of the database
-app.get('/', async (req, res) => {
-    try {
-        newData = await db.query('SELECT * FROM users;')
-        res.send(newData)
-    } catch (err) {
-        console.error(err)
-    }
-})
+
 
 //router middleware
 
-//app.use("/", index)
-app.use("/login", login_route)
-//app.use("/signup", signup_route)
+//login route
+app.use('/login',userDetails, routeToHome, loginRouter)
+
+//register route
+app.use('/register', userDetails, routeToHome, registerRouter)
+
+//logout route
+app.use('/logout',routeToLogin,logoutRouter)
+
+//home/dashboard route
+app.use(homeRouter) 
 
 
 
-const port = process.env.PORT || 3000
 
-app.listen(port, () => {
-    console.log(`App is listening at http://localhost:${port}`)
+
+PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`App listening at http://localhost:${PORT}`)
 })

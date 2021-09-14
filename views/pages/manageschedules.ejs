@@ -1,0 +1,24 @@
+<table>
+    <caption><%=user%></caption>
+    <tr>
+        <th>schedule_id</th>
+        <th>user_id</th>
+        <th>Day</th>
+        <th>Start_at:</th>
+        <th>End_at:</th>
+    </tr>
+    <% schedules.forEach((schedule,index) => { %>
+        <tr>
+            <td><%= schedule.schedule_id%></td>
+            <td><%= schedule.user_id%></td>
+            <td><%= schedule.day.days%></td>
+            <td><%= schedule.start_at%></td>
+            <td><%= schedule.end_at%></td>
+        </tr>
+
+    <%})%>
+    
+</table>
+
+<a href='/manageschedules/new'>create a new schedule</a><br>
+<a href='/logout'>Logout</a>

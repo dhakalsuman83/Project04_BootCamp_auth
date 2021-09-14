@@ -3,14 +3,14 @@
         <p style="color : red;"><%= message%></p>
     <%}%>
 </div>
-<form action="/register" method="POST">
+<form action='/register' method="post">
     <div>
-        <label for="first_name">Firstname:</label>
-        <input id="first_name" type="text" name="first_name">
+        <label for="surname">Surname:</label>
+        <input id="surname" type="text" name="surname">
     </div>
     <div>
-        <label for="last_name">Lastname:</label>
-        <input id="last_name" type="text" name="last_name">
+        <label for="firstname">Firstname:</label>
+        <input id="firstname" type="text" name="firstname">
     </div>
     <div>
         <label for="email">Email:</label>
@@ -22,10 +22,10 @@
     </div>
     <div>
         <label for="confirm_password">Confirm Password:</label>
-        <input id="confirm_password" type="password" name="confirm_password">
+        <input id="confirm_password" type="password" name="password2">
     </div>
     <div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">register</button>
     </div>
 </form>
 <a href='/login'>LogIn</a>
