@@ -1,0 +1,30 @@
+<div>
+    <% if(typeof message !== undefined){ %>
+        <p style="color : red;"><%= message%></p>
+    <%}%>
+</div>
+
+<form method="POST" action=":TODO">
+    <div>
+        <label for="day">Day:</label>
+        <select name="day" id="day">
+            <option value="">--Please select the day--</option>
+            <%weeks.forEach(week =>{ %>
+                <option value="<%=week.id%>"><%=week.days%></option>
+            <%})%>
+        </select>
+    </div>
+    <div>
+        <label for="start_at">Start_at:</label>
+        <input name="start_at" id="start_at" type="time" required>
+    </div>
+    <div>
+        <label for="end_at">End_at:</label>
+        <input name="end_at" id="end_at" type="time" required>
+    </div>
+    <button class="btn">Submit</button>
+</form>
+<div>
+    <p>To manage your existing schedules, please <a href='/manageschedules'>click here</a></p><br>
+    <a href='/logout'>Logout</a>
+</div>
