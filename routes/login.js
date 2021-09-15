@@ -2,23 +2,40 @@ const express = require('express');
 const db = require('../database');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
+const validateLoginCredentials = require('../helper/validate')
 
 router.get('/', (req, res) => {
     res.render('./pages/login', {
-        message:req.query.message
+        message: req.query.message
     })
 })
 
 //login credentials
 router.post('/', (req, res) => {
     //console.log({isslogin:res.locals.users})
-    const { email, password } = req.body;
-    //console.log(password)
     
-    //TODO: Validation
+
+    const { email, password } = req.body;
+
+    // validate
 
     //trimming email as we have stored the trimmed email in the database
     const emailTrim = email.toLowerCase().trim();
+    //console.log(password)
+    
+    //TODO: Validation
+    
+    const errors = validateLoginCredentials(email,password)
+
+    if (Object.keys(errors).length) {
+        return res.render('./pages/login', {
+            errors,
+            email,
+            password
+        })
+    }
+
+    
     //checking if the user exists in the system
     db.oneOrNone('SELECT * FROM users WHERE email = $1', [emailTrim])
         .then(data => {
