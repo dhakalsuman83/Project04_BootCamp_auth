@@ -1,20 +1,5 @@
 <%- include ('../partials/head'); -%> 
-<style>
-    .input-error{
-        border-color: red !important;
-    }
-    .input-success{
-        border-color: green !important;
-    }
-    .info-error {
-        color: red;
-    }
-</style>
-<div>
-    <% if(typeof message !== 'undefined'){ %>
-        <p style="color : red;"><%= message%></p>
-    <%}%>
-</div>
+
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
@@ -23,6 +8,11 @@
     <div class="fadeIn first">
         <img style = "margin :5px;"src="coffee.gif" id="icon" alt="User Icon" />
     </div>
+    <div>
+        <% if(typeof message !== 'undefined'){ %>
+            <p style="color : red;"><%= message%></p>
+        <%}%>
+    </div>
     <form action="/login" method="POST">
         <div class="form-items">
             <input 
@@ -30,7 +20,7 @@
             id="login" 
             class="fadeIn second <%=(typeof(errors) !== 'undefined')  ? (errors.email) ? 'input-error' : 'input-success' : '' %>" 
             name="email" 
-            placeholder="login" 
+            placeholder="Email" 
             value="<%= typeof email !== 'undefined' ? email : '' %>"
             >
             

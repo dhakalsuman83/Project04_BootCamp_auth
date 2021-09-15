@@ -1,7 +1,4 @@
-<div>
-    <% if(typeof message !== undefined){ %>
-        <p style="color : red;"><%= message%></p>
-    <%}%>
+<!-- <div>
 </div>
 <form action='/register' method="post">
     <div>
@@ -28,4 +25,38 @@
         <button type="submit">register</button>
     </div>
 </form>
-<a href='/login'>LogIn</a>
+<a href='/login'>LogIn</a> -->
+
+<%- include ('../partials/head'); -%> 
+
+<div class="wrapper fadeInDown">
+
+    <% if(typeof message !== 'undefined'){ %>
+        <p style="color : red;"><%= message%></p>
+    <%}%>
+    <form action="/register" method="POST" class="register-form">
+        <div class="register-form-items">
+            <label for="surname">Surname:</label>
+            <input id="surname" type="text" name="surname" required>
+        </div>
+        <div class="register-form-items">
+            <label for="firstname">Firstname:</label>
+            <input id="firstname" type="text" name="firstname">
+        </div>
+        <div class="register-form-items">
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email">
+        </div>
+        <div class="register-form-items">
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password">
+        </div>
+        <div class="register-form-items">
+            <label for="confirm_password">Confirm Password:</label>
+            <input id="confirm_password" type="password" name="password2">
+        </div>
+        <div class="register-form-items">
+            <button type="submit">register</button>
+        </div>
+    </form>
+    <p style="margin-top :50px;">Already a member? <a href='/login'>LogIn</a></p>
