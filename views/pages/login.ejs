@@ -1,10 +1,24 @@
+<%- include ('../partials/head'); -%> 
+
 <div>
     <% if(typeof message !== undefined){ %>
         <p style="color : red;"><%= message%></p>
     <%}%>
 </div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img style = "margin :5px;"src="coffee.gif" id="icon" alt="User Icon" />
+    </div>
 <form action="/login" method="POST">
-    <div>
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+ </form>
+  <!--- <div>
         <label for="email">Email:</label>
         <input id="email" type="email" name="email">
     </div>
@@ -14,7 +28,9 @@
     </div>
     <div>
         <button type="submit">Log In</button>
-    </div>
+    </div>--> 
 </form>
-<a href='/register'>Register</a>
+<div>
+<a style = "margin-bottom: 10px;" href='/register'>Register</a>
+</div>
 </body>
