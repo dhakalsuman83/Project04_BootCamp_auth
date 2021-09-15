@@ -14,8 +14,17 @@ router.get('/', async (req, res,next) => {
     // console.log(res.locals)
     const users = res.locals.user
     //console.log(users)
+        const allSchedules = await db.any('SELECT users.user_id,users.surname,users.firstname,users FROM users LEFT JOIN schedules ON users.user_id = schedules.user_id')
+        // const groupsSchedules = {}
+        // allSchedules.forEach(schedule => {
+        //     if (!groupsSchedules[schedule.user_id]) {
+        //         groupsSchedules[schedule.user_id] = []
+        //     }
+        //     groupsSchedules[schedule.user_id].push(schedule)
+        // })
     res.render('./pages/home', {
-        user : users[0].firstname
+        user: users,
+        allSchedules
     })
     } catch (err) {
         console.log(err)
@@ -34,7 +43,8 @@ router.get('/manageschedules', async (req, res) => {
         const users = res.locals.user
         res.render('./pages/manageschedules', {
             schedules,
-            user:users[0].firstname
+            user: users[0].firstname,
+            message: req.query.message
         })
     } catch (err) {
         console.log(err)
@@ -46,7 +56,7 @@ router.get('/manageschedules/new', async (req, res) => {
     try {
         res.render('./pages/scheduleform', {
             message: req.query.message,
-            weeks:weekDays
+            weeks: weekDays
         })
     } catch (err) {
         console.log(err)
