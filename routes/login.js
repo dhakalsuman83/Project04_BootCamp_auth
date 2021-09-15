@@ -12,19 +12,14 @@ router.get('/', (req, res) => {
 
 //login credentials
 router.post('/', (req, res) => {
-    //console.log({isslogin:res.locals.users})
     
-
     const { email, password } = req.body;
 
-    // validate
-
-    //trimming email as we have stored the trimmed email in the database
-    const emailTrim = email.toLowerCase().trim();
+    
     //console.log(password)
     
-    //TODO: Validation
     
+    //Validation
     const errors = validateLoginCredentials(email,password)
 
     if (Object.keys(errors).length) {
@@ -34,7 +29,8 @@ router.post('/', (req, res) => {
             password
         })
     }
-
+    //trimming email as we have stored the trimmed email in the database
+    const emailTrim = email.toLowerCase().trim();
     
     //checking if the user exists in the system
     db.oneOrNone('SELECT * FROM users WHERE email = $1', [emailTrim])
