@@ -2,6 +2,7 @@ require('dotenv').config()    //requiring the .env file
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
+const path = require('path')
 const loginRouter= require('./routes/login')
 const registerRouter = require('./routes/register')
 const homeRouter = require('./routes/home')
@@ -14,6 +15,9 @@ const logoutRouter = require('./routes/logout')
 const app = express();
 
 //setting view enginne and layouts
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static("public"));
+
 app.use(expressLayouts)
 app.set("layout", "./layouts/main")
 
@@ -32,7 +36,7 @@ app.use(session({
     name : 'mr_csid',
     resave : false,
     saveUninitialized : false,
-    secret : process.env.SECRET_SESS_KEY,
+    secret : process.env.SECRET_SESS_KEY || 'lejncjksencc',
     cookie :{
         maxAge : Time,
         sameSite : true,
