@@ -1,5 +1,8 @@
 
 /* BASIC */
+/* *{
+  border:1px solid red;
+} */
 
 html {
     background-color: #56baed;
@@ -63,6 +66,19 @@ html {
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
   }
+
+  /* error messages in the form */
+  .input-error{
+    border-color: red !important;
+  }
+
+  .input-success{
+    border-color: green !important;
+  }
+
+  .info-error {
+    color: red;
+  }
   
   
   
@@ -87,8 +103,32 @@ html {
     flex-direction: column;
     align-items: center;
   }
-  
-  input[type=button], input[type=submit], input[type=reset]  {
+  .register-form-items{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .register-form{
+    width:40%;
+    margin:20px auto;
+  }
+
+  .register-form-items input{
+    width: 100% !important;
+
+  }
+  .register-form-items{
+    margin-bottom: 20px;
+  }
+
+  .register-form-items button{
+    padding-top:15px;
+    padding-bottom: 15px;
+
+  }
+
+  input[type=button], input[type=submit], input[type=reset] {
     background-color: #56baed;
     border: none;
     color: white;
@@ -122,12 +162,12 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text],input[type=password] {
+  input[type=text],input[type=password],input[type=email] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
-    text-align: center;
+    /* text-align: center; */
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
