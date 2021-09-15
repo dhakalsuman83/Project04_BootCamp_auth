@@ -1,3 +1,4 @@
+<%- include ('../partials/head'); -%> 
 <style>
     .input-error{
         border-color: red;
@@ -14,25 +15,47 @@
         <p style="color : red;"><%= message%></p>
     <%}%>
 </div>
-<form action="/login" method="POST" novalidate>
-    <div>
-        <label for="email">Email:</label>
-        <input class="<%=(typeof(errors) !== 'undefined')  ? (errors.email) ? 'input-error' : 'input-success' : '' %>" id="email" type="email" name="email" value="<%= typeof email !== 'undefined' ? email : '' %>">
-        
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      
+      <!-- Icon -->
+    <div class="fadeIn first">
+        <img style = "margin :5px;"src="coffee.gif" id="icon" alt="User Icon" />
+    </div>
+    <form action="/login" method="POST">
+        <input 
+        type="text"
+        id="login" 
+        class="fadeIn second <%=(typeof(errors) !== 'undefined')  ? (errors.email) ? 'input-error' : 'input-success' : '' %>" 
+        name="email" 
+        placeholder="login" 
+        value="<%= typeof email !== 'undefined' ? email : '' %>"
+        >
+
         <%  if((typeof(errors) !== 'undefined')  && (errors.email)) {%>
             <small class="info-error"><%=errors.email%></small>
         <%}%>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input class="<%=(typeof(errors) !== 'undefined')  ? (errors.password) ? 'input-error' : 'input-success' : '' %>" id="password" type="password" name="password" value="<%= typeof password !== 'undefined' ? password : '' %>">
+
+        <input 
+        type="password" 
+        id="password" 
+        class="fadeIn third <%=(typeof(errors) !== 'undefined')  ? (errors.password) ? 'input-error' : 'input-success' : '' %>" 
+        name="password" 
+        placeholder="password" 
+        value="<%= typeof password !== 'undefined' ? password : '' %>"
+        >
+
         <%  if((typeof(errors) !== 'undefined')  && (errors.password)) {%>
             <small class="info-error"><%=errors.password%></small>
         <%}%>
-    </div>
-    <div>
-        <button type="submit">Log In</button>
-    </div>
-</form>
-<a href='/register'>Register</a>
-</body>
+
+        <input 
+        type="submit" 
+        class="fadeIn fourth" 
+        value="Log In"
+        >
+ </form>
+<div>
+<a style = "margin-bottom: 10px;" href='/register'>Register</a>
+</div>
