@@ -1,5 +1,4 @@
 function timeConversion(time) {
-    console.log(time)
     var temp = time.split(':');
     time = temp.join('');
     return +time;

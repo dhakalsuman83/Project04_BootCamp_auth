@@ -87,6 +87,22 @@ html {
   .info-error {
     color: red;
   }
+
+  .form-items,login-form{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .form-items{
+   align-items: center;
+  }
+
+  .register-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   
   
