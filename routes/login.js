@@ -2,12 +2,10 @@ const express = require('express');
 const db = require('../database');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-const validateLoginCredentials = require('../helper/validate')
+const { validateLoginCredentials } = require('../helper/validate')
 
 router.get('/', (req, res) => {
-    res.render('./pages/login', {
-        message: req.query.message
-    })
+    res.render('./pages/login')
 })
 
 //login credentials
@@ -37,7 +35,9 @@ router.post('/', (req, res) => {
         .then(data => {
            // console.log(data)
             if (!data) {
-                res.redirect('/register?message=Email%20is%20not%20registered')
+                return res.render('./pages/login', {
+                    errMessage:'Email is not registered'
+                })
             } else {
                 // console.log(data.password)
                 // console.log(password)
@@ -47,7 +47,9 @@ router.post('/', (req, res) => {
                     .then(result => {
                        // console.log(result)
                         if (!result) {
-                            res.redirect('/login?message=Email%20or%20password%20does%20not%20match')
+                            res.render('./pages/login', {
+                                errMessage: 'Email or password does not match'
+                            })
                         } else {
                             req.session.userId = data.user_id
                             res.redirect('/')

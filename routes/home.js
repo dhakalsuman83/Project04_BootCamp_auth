@@ -4,7 +4,7 @@ const { routeToLogin } = require('../middlewares/middleware');
 const userDetails = require('../middlewares/userDetails');
 const router = express.Router();
 const weekDays = require('../helper/weekdays');
-const { application } = require('express');
+const { validateSchedules } = require('../helper/validate');
 
 router.use(userDetails,routeToLogin)
 
@@ -14,17 +14,24 @@ router.get('/', async (req, res,next) => {
     // console.log(res.locals)
     const users = res.locals.user
     //console.log(users)
-        const allSchedules = await db.any('SELECT users.user_id,users.surname,users.firstname,users FROM users LEFT JOIN schedules ON users.user_id = schedules.user_id')
-        // const groupsSchedules = {}
-        // allSchedules.forEach(schedule => {
-        //     if (!groupsSchedules[schedule.user_id]) {
-        //         groupsSchedules[schedule.user_id] = []
-        //     }
-        //     groupsSchedules[schedule.user_id].push(schedule)
-        // })
+        const allSchedules = await db.any('SELECT users.user_id,users.surname,users.firstname,schedules.start_time,schedules.end_time,schedules.day FROM users INNER JOIN schedules ON users.user_id = schedules.user_id')
+        const groupsSchedules = []
+        allSchedules.forEach(schedule => {
+            const {user_id,firstname,surname,start_time,end_time,day}=schedule
+            const foundUser=groupsSchedules.find((each => each.user_id === schedule.user_id));
+            if (foundUser) {
+                foundUser.user_schedule.push({start_time,end_time,day})
+            }
+            else {
+                const data = { user_id, firstname, surname, user_schedule: [] }
+                data.user_schedule.push({start_time,end_time,day})
+                groupsSchedules.push(data)
+            }
+        })
     res.render('./pages/home', {
         user: users,
-        allSchedules
+        allSchedules,
+        groupsSchedules
     })
     } catch (err) {
         console.log(err)
@@ -55,7 +62,6 @@ router.get('/manageschedules', async (req, res) => {
 router.get('/manageschedules/new', async (req, res) => {
     try {
         res.render('./pages/scheduleform', {
-            message: req.query.message,
             weeks: weekDays
         })
     } catch (err) {
@@ -68,6 +74,17 @@ router.post('/manageschedules/new', async (req, res) => {
     try {
         const {day,start_at,end_at}= req.body
     //1. validation
+        const errors = validateSchedules(req.body)
+
+        if (Object.keys(errors).length) {
+            return res.render('./pages/scheduleform', {
+                day,
+                start_at,
+                end_at,
+                weeks: weekDays,
+                errors
+            })
+        }
 
     //2.adding the schedule to the user
     await db.none('INSERT INTO schedules (user_id, day, start_time, end_time) VALUES ($1,$2,$3,$4);',

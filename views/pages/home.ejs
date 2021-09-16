@@ -4,8 +4,48 @@
 <a href='/manageschedules'>Manage Schedules</a><br>
 <a href='/logout'>Logout</a>
 
+<style>
+    table {
+        width:80%;
+        border-collapse: collapse;
+    }
+    table tr th,
+    table tr td {
+        border: 1px solid #333;
+        padding: 4px 5px;
+    }
+</style>
 
 <div>
-    <%=JSON.stringify(allSchedules)%>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    S.N.
+                </th>
+                <th>Name</th>
+                <th>Schedules</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% groupsSchedules.map((each,index) => {%>
+            <tr>
+                <td><%= index+1 %></td>
+                <td>
+                    <a href="">
+                        <%= each.firstname %>
+                    </a>
+                </td>
+                <td>
+                    <% each.user_schedule.map(schedule => {%>
+                        <p><%= schedule.day %></p>
+                        <p><%= schedule.start_time %></p>
+                        <p><%= schedule.end_time %></p>
+                    <% }) %>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </div>
 
