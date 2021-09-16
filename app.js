@@ -14,6 +14,8 @@ const logoutRouter = require('./routes/logout')
 
 const app = express();
 
+
+
 //setting view enginne and layouts
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
@@ -22,6 +24,7 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/main")
 
 app.set('view engine', 'ejs')
+
 
 //body parsers
 app.use(express.json())

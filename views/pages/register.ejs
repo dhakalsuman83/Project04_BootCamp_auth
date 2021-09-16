@@ -31,32 +31,92 @@
 
 <div class="wrapper fadeInDown">
 
-    <% if(typeof message !== 'undefined'){ %>
-        <p style="color : red;"><%= message%></p>
+    <% if(typeof errMessage !== 'undefined'){ %>
+        <p style="margin-top:50px;color : red;"><%= errMessage%></p>
     <%}%>
-    <form action="/register" method="POST" class="register-form">
-        <div class="register-form-items">
+    <form action="/register" method="POST" class="register-form" novalidate>
+        <div class="register-form-items"
             <label for="surname">Surname:</label>
-            <input id="surname" type="text" name="surname" required>
+            <input 
+            id="surname" 
+            class="<%= typeof errors !== 'undefined'? errors.surname? 'input-error':'input-success':'' %>"
+            type="text" 
+            name="surname" 
+            value="<%= typeof surname !== 'undefined' ? surname : '' %>"
+            >
+
+            <%if(typeof errors !== 'undefined' && errors.surname){%>
+                <small class="info-error"><%=errors.surname%></small>
+            <%}%>
         </div>
         <div class="register-form-items">
             <label for="firstname">Firstname:</label>
-            <input id="firstname" type="text" name="firstname">
+            <input 
+            id="firstname"
+            class="<%= typeof errors !== 'undefined'? errors.firstname? 'input-error':'input-success':'' %>" 
+            type="text" 
+            name="firstname"
+            value="<%= typeof firstname !== 'undefined' ? firstname : '' %>"
+            >
+
+            <%if(typeof errors !== 'undefined' && errors.firstname){%>
+                <small class="info-error"><%=errors.firstname%></small>
+            <%}%>
+    
         </div>
         <div class="register-form-items">
             <label for="email">Email:</label>
-            <input id="email" type="email" name="email">
+            <input 
+            id="email" 
+            class="<%= typeof errors !== 'undefined'? errors.email? 'input-error':'input-success':'' %>"
+            type="email" name="email"
+            value="<%= typeof email !== 'undefined' ? email : '' %>"
+            >
+            
+            <%if(typeof errors !== 'undefined' && errors.email){%>
+                <small class="info-error"><%=errors.email%></small>
+            <%}%>
+
         </div>
+
         <div class="register-form-items">
             <label for="password">Password:</label>
-            <input id="password" type="password" name="password">
+            <input 
+            id="password"
+            class="<%= typeof errors !== 'undefined'? errors.password? 'input-error':'input-success':'' %>" 
+            type="password" 
+            name="password"
+            value="<%= typeof password !== 'undefined' ? password : '' %>"
+            >
+
+            <%if(typeof errors !== 'undefined' && errors.password){%>
+                <small class="info-error"><%=errors.password%></small>
+            <%}%>
+            
         </div>
+
         <div class="register-form-items">
             <label for="confirm_password">Confirm Password:</label>
-            <input id="confirm_password" type="password" name="password2">
+            <input 
+            id="confirm_password"
+            class="<%= typeof errors !== 'undefined'? errors.password2? 'input-error':'input-success':'' %>" 
+            type="password" 
+            name="password2"
+            value="<%= typeof password2 !== 'undefined' ? password2 : '' %>"
+            >
+
+            <%if(typeof errors !== 'undefined' && errors.password2){%>
+                <small class="info-error"><%=errors.password2%></small>
+            <%}%>
+
         </div>
+
         <div class="register-form-items">
             <button type="submit">register</button>
         </div>
+        <div class="register-form-items">
+            <p>Already a member? <a href='/login'>LogIn</a></p>
+        </div>
     </form>
-    <p style="margin-top :50px;">Already a member? <a href='/login'>LogIn</a></p>
+</div>
+    
