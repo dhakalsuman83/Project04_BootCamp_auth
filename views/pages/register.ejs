@@ -1,62 +1,29 @@
-<!-- <div>
-</div>
-<form action='/register' method="post">
-    <div>
-        <label for="surname">Surname:</label>
-        <input id="surname" type="text" name="surname">
-    </div>
-    <div>
-        <label for="firstname">Firstname:</label>
-        <input id="firstname" type="text" name="firstname">
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input id="email" type="email" name="email">
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input id="password" type="password" name="password">
-    </div>
-    <div>
-        <label for="confirm_password">Confirm Password:</label>
-        <input id="confirm_password" type="password" name="password2">
-    </div>
-    <div>
-        <button type="submit">register</button>
-    </div>
-</form>
-<a href='/login'>LogIn</a> -->
-
 <%- include ('../partials/head'); -%> 
-
 <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
+    <!-- Icon -->
+   <!---<div class="fadeIn first">
+        <img style="max-height: 10%;" src="https://media0.giphy.com/media/EwNWZrqJgRvdbe1BAl/giphy.gif?cid=6c09b952315c8b5855cb5c54658ef71c4782f871cadfed03&rid=giphy.gif&ct=s" id="icon" alt="User Icon" />
+    </div>-->
     <% if(typeof message !== 'undefined'){ %>
         <p style="color : red;"><%= message%></p>
     <%}%>
+    <!-- Login Form -->
     <form action="/register" method="POST" class="register-form">
-        <div class="register-form-items">
-            <label for="surname">Surname:</label>
-            <input id="surname" type="text" name="surname" required>
-        </div>
-        <div class="register-form-items">
-            <label for="firstname">Firstname:</label>
-            <input id="firstname" type="text" name="firstname">
-        </div>
-        <div class="register-form-items">
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email">
-        </div>
-        <div class="register-form-items">
-            <label for="password">Password:</label>
-            <input id="password" type="password" name="password">
-        </div>
-        <div class="register-form-items">
-            <label for="confirm_password">Confirm Password:</label>
-            <input id="confirm_password" type="password" name="password2">
-        </div>
-        <div class="register-form-items">
-            <button type="submit">register</button>
-        </div>
+      <input type="text" id="login" class="fadeIn second" name="surname" placeholder="Surname">
+      <input type="text" id="login" class="fadeIn second" name="firstname" placeholder="Firstname">
+      <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
+      <input type="password" id="password" class="fadeIn second" name="password" placeholder="Password">
+      <input type="password" id="password" class="fadeIn third" name="password2" placeholder="Confirm Password">
+      <input type="submit" class="fadeIn fourth" value="Register">
     </form>
-    <p style="margin-top :50px;">Already a member? <a href='/login'>LogIn</a></p>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="/login">Already a member?</a>
+    </div>
+
+  </div>
+</div>
