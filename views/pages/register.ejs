@@ -1,122 +1,48 @@
-<!-- <div>
-</div>
-<form action='/register' method="post">
-    <div>
-        <label for="surname">Surname:</label>
-        <input id="surname" type="text" name="surname">
-    </div>
-    <div>
-        <label for="firstname">Firstname:</label>
-        <input id="firstname" type="text" name="firstname">
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input id="email" type="email" name="email">
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input id="password" type="password" name="password">
-    </div>
-    <div>
-        <label for="confirm_password">Confirm Password:</label>
-        <input id="confirm_password" type="password" name="password2">
-    </div>
-    <div>
-        <button type="submit">register</button>
-    </div>
-</form>
-<a href='/login'>LogIn</a> -->
-
 <%- include ('../partials/head'); -%> 
-
 <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-    <% if(typeof errMessage !== 'undefined'){ %>
-        <p style="margin-top:50px;color : red;"><%= errMessage%></p>
+    <!-- Icon -->
+   <!---<div class="fadeIn first">
+        <img style="max-height: 10%;" src="https://media0.giphy.com/media/EwNWZrqJgRvdbe1BAl/giphy.gif?cid=6c09b952315c8b5855cb5c54658ef71c4782f871cadfed03&rid=giphy.gif&ct=s" id="icon" alt="User Icon" />
+    </div>-->
+    <% if(typeof errmessage !== 'undefined'){ %>
+      <p style="margin-top:50px;color : red;"><%= errMessage%></p>
     <%}%>
+    <!-- Login Form -->
     <form action="/register" method="POST" class="register-form" novalidate>
-        <div class="register-form-items"
-            <label for="surname">Surname:</label>
-            <input 
-            id="surname" 
-            class="<%= typeof errors !== 'undefined'? errors.surname? 'input-error':'input-success':'' %>"
-            type="text" 
-            name="surname" 
-            value="<%= typeof surname !== 'undefined' ? surname : '' %>"
-            >
+      <input type="text" class ="<%= typeof errors !== 'undefined'? errors.surname? 'input-error':'input-success':'' %>" id="surname" class="fadeIn second" name="surname" placeholder="Surname"   value="<%= typeof surname !== 'undefined' ? surname : '' %>">
+          <%if(typeof errors !== 'undefined' && errors.surname){%>
+            <small class="info-error"><%=errors.surname%></small>
+          <%}%>
 
-            <%if(typeof errors !== 'undefined' && errors.surname){%>
-                <small class="info-error"><%=errors.surname%></small>
-            <%}%>
-        </div>
-        <div class="register-form-items">
-            <label for="firstname">Firstname:</label>
-            <input 
-            id="firstname"
-            class="<%= typeof errors !== 'undefined'? errors.firstname? 'input-error':'input-success':'' %>" 
-            type="text" 
-            name="firstname"
-            value="<%= typeof firstname !== 'undefined' ? firstname : '' %>"
-            >
+      <input type="text" class="<%= typeof errors !== 'undefined'? errors.firstname? 'input-error':'input-success':'' %>" id="login" class="fadeIn second" name="firstname" placeholder="Firstname" value="<%= typeof firstname !== 'undefined' ? firstname : '' %>">
+          <%if(typeof errors !== 'undefined' && errors.firstname){%>
+            <small class="info-error"><%=errors.firstname%></small>
+          <%}%>
 
-            <%if(typeof errors !== 'undefined' && errors.firstname){%>
-                <small class="info-error"><%=errors.firstname%></small>
-            <%}%>
-    
-        </div>
-        <div class="register-form-items">
-            <label for="email">Email:</label>
-            <input 
-            id="email" 
-            class="<%= typeof errors !== 'undefined'? errors.email? 'input-error':'input-success':'' %>"
-            type="email" name="email"
-            value="<%= typeof email !== 'undefined' ? email : '' %>"
-            >
-            
-            <%if(typeof errors !== 'undefined' && errors.email){%>
-                <small class="info-error"><%=errors.email%></small>
-            <%}%>
+      <input type="text" class="<%= typeof errors !== 'undefined'? errors.email? 'input-error':'input-success':'' %>" id="login" class="fadeIn second" name="email" placeholder="email" value="<%= typeof email !== 'undefined' ? email : '' %>">
+          <%if(typeof errors !== 'undefined' && errors.email){%>
+            <small class="info-error"><%=errors.email%></small>
+          <%}%>
 
-        </div>
+      <input type="password"  class="<%= typeof errors !== 'undefined'? errors.password? 'input-error':'input-success':'' %>" id="password" class="fadeIn second" name="password" placeholder="Password" value="<%= typeof password !== 'undefined' ? password : '' %>">
+          <%if(typeof errors !== 'undefined' && errors.password){%>
+            <small class="info-error"><%=errors.password%></small>
+          <%}%>
 
-        <div class="register-form-items">
-            <label for="password">Password:</label>
-            <input 
-            id="password"
-            class="<%= typeof errors !== 'undefined'? errors.password? 'input-error':'input-success':'' %>" 
-            type="password" 
-            name="password"
-            value="<%= typeof password !== 'undefined' ? password : '' %>"
-            >
+      <input type="password" class="<%= typeof errors !== 'undefined'? errors.password2? 'input-error':'input-success':'' %>" id="password" class="fadeIn third" name="password2" placeholder="Confirm Password" value="<%= typeof password2 !== 'undefined' ? password2 : '' %>">
+          <%if(typeof errors !== 'undefined' && errors.password2){%>
+            <small class="info-error"><%=errors.password2%></small>
+          <%}%>
 
-            <%if(typeof errors !== 'undefined' && errors.password){%>
-                <small class="info-error"><%=errors.password%></small>
-            <%}%>
-            
-        </div>
-
-        <div class="register-form-items">
-            <label for="confirm_password">Confirm Password:</label>
-            <input 
-            id="confirm_password"
-            class="<%= typeof errors !== 'undefined'? errors.password2? 'input-error':'input-success':'' %>" 
-            type="password" 
-            name="password2"
-            value="<%= typeof password2 !== 'undefined' ? password2 : '' %>"
-            >
-
-            <%if(typeof errors !== 'undefined' && errors.password2){%>
-                <small class="info-error"><%=errors.password2%></small>
-            <%}%>
-
-        </div>
-
-        <div class="register-form-items">
-            <button type="submit">register</button>
-        </div>
-        <div class="register-form-items">
-            <p>Already a member? <a href='/login'>LogIn</a></p>
-        </div>
+      <input type="submit" class="fadeIn fourth" value="Register">
     </form>
+    <div id="formFooter">
+      <a class="underlineHover" href="/login">Already a member?</a>
+    </div>
+
+  </div>
 </div>
-    
+
