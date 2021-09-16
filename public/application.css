@@ -11,6 +11,8 @@ html {
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background: rgb(0,0,0);
+    background: linear-gradient(120deg, rgba(0,0,0,1) 5%, rgba(255,255,255,0) 50%, rgba(139,89,63,1) 92%);
   }
   
   a {
@@ -102,38 +104,6 @@ html {
   
   
   /* FORM TYPOGRAPHY*/
-
-  .form-items {
-    margin:2px auto;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .register-form-items{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .register-form{
-    width:40%;
-    margin:20px auto;
-  }
-
-  .register-form-items input{
-    width: 100% !important;
-
-  }
-  .register-form-items{
-    margin-bottom: 20px;
-  }
-
-  .register-form-items button{
-    padding-top:15px;
-    padding-bottom: 15px;
-
-  }
-
   input[type=button], input[type=submit], input[type=reset] {
     background-color: #56baed;
     border: none;
@@ -314,4 +284,5 @@ html {
   #icon {
     width:60%;
   }
+  
   
