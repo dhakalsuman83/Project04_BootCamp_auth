@@ -1,6 +1,6 @@
 <%- include ('../partials/head'); -%> 
 
-<div class="wrapper fadeInDown">
+<div class="wrapper fadeInDown height">
     <div id="formContent">
       <!-- Tabs Titles -->
       
@@ -9,8 +9,13 @@
         <img style = "margin :5px;"src="coffee.gif" id="icon" alt="User Icon" />
     </div>
     <div>
-        <% if(typeof message !== 'undefined'){ %>
-            <p style="color : red;"><%= message%></p>
+        <% if(typeof errMessage !== 'undefined'){ %>
+            <p style="color : red;"><%= errMessage%></p>
+        <%}%>
+    </div>
+    <div>
+        <% if(typeof successMessage !== 'undefined'){ %>
+            <p style="color :green;"><%= successMessage%></p>
         <%}%>
     </div>
     <form action="/login" method="POST">
@@ -27,6 +32,7 @@
             <%  if((typeof(errors) !== 'undefined')  && (errors.email)) {%>
                 <small class="info-error"><%=errors.email%></small>
             <%}%>
+
         </div>
 
         <div class="form-items">
