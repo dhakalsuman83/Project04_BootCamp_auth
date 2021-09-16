@@ -1,68 +1,71 @@
 
-<%- include ('../partials/head'); -%> 
-<div>
-    <% if(typeof message !== 'undefined'){ %>
-        <p style="color : red;"><%= message%></p>
-    <%}%>
-</div>
-<div>
-    <% if(typeof errors !== 'undefined' && errors.timeCheck){ %>
-        <p style="color : red;"><%= errors.timeCheck%></p>
-    <%}%>
-</div>
-
-<form method="POST" action="/manageschedules/new" novalidate>
+<div class="schedule-page">
+    <%- include ('../partials/head'); -%> 
     <div>
-        <label for="day">Day:</label>
-        <select 
-        name="day" 
-        id="day" 
-        class = "<%= typeof errors !== 'undefined'? (errors.day)?'input-error':'input-success':'' %>"
-        >
-            <option value="0">--Please select the day--</option>
-            <%weeks.forEach(week =>{ %>
-                <option value="<%=week.id%>"><%=week.days%></option>
-            <%})%>
-        </select>
-        <% if (typeof errors !== 'undefined' && errors.day){%>
-            <small class="info-error"><%=errors.day%></small>
-        <%}%>
-
-    </div>
-
-    <div>
-        <label for="start_at">Start_at:</label>
-        <input 
-        name="start_at" 
-        id="start_at"
-        class = "<%= typeof errors !== 'undefined'? (errors.start_at)?'input-error':'input-success':'' %>"
-        class=""
-        type="time"
-        value="<%= typeof start_at !== 'undefined' ? start_at: '' %>"
-        >
-        <% if (typeof errors !== 'undefined' && errors.start_at){%>
-            <small class="info-error"><%=errors.start_at%></small>
+        <% if(typeof message !== 'undefined'){ %>
+            <p style="color : red;"><%= message%></p>
         <%}%>
     </div>
-
     <div>
-        <label for="end_at">End_at:</label>
-        <input 
-        name="end_at" 
-        id="end_at"
-        class = "<%= typeof errors !== 'undefined'? (errors.end_at)?'input-error':'input-success':'' %>" 
-        class=""
-        type="time"
-        value="<%= typeof end_at !== 'undefined' ? end_at: '' %>"
-        >
-        <% if (typeof errors !== 'undefined' && errors.end_at){%>
-            <small class="info-error"><%=errors.end_at%></small>
+        <% if(typeof errors !== 'undefined' && errors.timeCheck){ %>
+            <p style="color : red;"><%= errors.timeCheck%></p>
         <%}%>
+    </div>
+    
+    <form method="POST" action="/manageschedules/new" novalidate>
+        <div>
+            <label for="day">Day:</label>
+            <select 
+            name="day" 
+            id="day" 
+            class = "<%= typeof errors !== 'undefined'? (errors.day)?'input-error':'input-success':'' %>"
+            >
+                <option value="0">--Please select the day--</option>
+                <%weeks.forEach(week =>{ %>
+                    <option value="<%=week.id%>"><%=week.days%></option>
+                <%})%>
+            </select>
+            <% if (typeof errors !== 'undefined' && errors.day){%>
+                <small class="info-error"><%=errors.day%></small>
+            <%}%>
+    
         </div>
-
-    <button class="btn">Submit</button>
-</form>
-<div>
-    <p>To manage your existing schedules, please <a href='/manageschedules'>click here</a></p><br>
-    <a href='/logout'>Logout</a>
+    
+        <div>
+            <label for="start_at">Start_at:</label>
+            <input 
+            name="start_at" 
+            id="start_at"
+            class = "<%= typeof errors !== 'undefined'? (errors.start_at)?'input-error':'input-success':'' %>"
+            class=""
+            type="time"
+            value="<%= typeof start_at !== 'undefined' ? start_at: '' %>"
+            >
+            <% if (typeof errors !== 'undefined' && errors.start_at){%>
+                <small class="info-error"><%=errors.start_at%></small>
+            <%}%>
+        </div>
+    
+        <div>
+            <label for="end_at">End_at:</label>
+            <input 
+            name="end_at" 
+            id="end_at"
+            class = "<%= typeof errors !== 'undefined'? (errors.end_at)?'input-error':'input-success':'' %>" 
+            class=""
+            type="time"
+            value="<%= typeof end_at !== 'undefined' ? end_at: '' %>"
+            >
+            <% if (typeof errors !== 'undefined' && errors.end_at){%>
+                <small class="info-error"><%=errors.end_at%></small>
+            <%}%>
+            </div>
+    
+        <button class="btn">Submit</button>
+    </form>
+    <div>
+        <p>To manage your existing schedules, please <a href='/manageschedules'>click here</a></p><br>
+        <a href='/logout'>Logout</a>
+    </div>
+    
 </div>

@@ -102,6 +102,15 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top:20px;
+  }
+
+  .manage-schedules{
+    color: white;
+  }
+
+  .schedule-page{
+    color:white;
   }
   
   

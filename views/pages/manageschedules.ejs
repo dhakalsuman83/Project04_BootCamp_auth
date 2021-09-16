@@ -1,30 +1,32 @@
-<div>
-    <% if(typeof message !== undefined){ %>
-        <p style="color : red;"><%= message%></p>
-    <%}%>
-</div>
-<table>
-    <caption><%=user%></caption>
-    <tr>
-        <th>schedule_id</th>
-        <th>user_id</th>
-        <th>Day</th>
-        <th>Start_time:</th>
-        <th>End_time:</th>
-    </tr>
-    <% schedules.forEach((schedule,index) => { %>
+<div class="manage-schedules">
+    <div>
+        <% if(typeof message !== undefined){ %>
+            <p style="color : red;"><%= message%></p>
+        <%}%>
+    </div>
+    <table>
+        <caption><%=user%></caption>
         <tr>
-            <td><%= schedule.schedule_id%></td>
-            <td><%= schedule.user_id%></td>
-            <td><%= schedule.day.days%></td>
-            <td><%= schedule.start_time%></td>
-            <td><%= schedule.end_time%></td>
+            <th>schedule_id</th>
+            <th>user_id</th>
+            <th>Day</th>
+            <th>Start_time:</th>
+            <th>End_time:</th>
         </tr>
-
-    <%})%>
+        <% schedules.forEach((schedule,index) => { %>
+            <tr>
+                <td><%= schedule.schedule_id%></td>
+                <td><%= schedule.user_id%></td>
+                <td><%= schedule.day.days%></td>
+                <td><%= schedule.start_time%></td>
+                <td><%= schedule.end_time%></td>
+            </tr>
     
-</table>
-
-<a href='/manageschedules/new'>create a new schedule</a><br>
-<a href='/'>back to dashboard</a><br>
-<a href='/logout'>Logout</a>
+        <%})%>
+        
+    </table>
+    
+    <a href='/manageschedules/new'>create a new schedule</a><br>
+    <a href='/'>back to dashboard</a><br>
+    <a href='/logout'>Logout</a>
+</ >
