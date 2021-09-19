@@ -1,46 +1,30 @@
-<%- include ('../partials/head'); -%> 
-<h2>Welcome <%=user[0].firstname%></h2>
+<%- include ('../partials/head') %>
 
-<a href='/manageschedules'>Manage Schedules</a><br>
-<a href='/logout'>Logout</a>
-
-<style>
-    table {
-        width:80%;
-        border-collapse: collapse;
-    }
-    table tr th,
-    table tr td {
-        border: 1px solid #333;
-        padding: 4px 5px;
-    }
-</style>
-
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    S.N.
-                </th>
-                <th>Name</th>
-                <th>Schedules</th>
-            </tr>
-        </thead>
+<div class="details-table">
+    <table class="text-center">
+        <tr>
+            <th colspan="3" >All Schedules</th>
+        </tr>
+        <tr>
+            <th>
+                S.N.
+            </th>
+            <th>Name</th>
+            <th>Schedules</th>
+        </tr>
         <tbody>
             <% groupsSchedules.map((each,index) => {%>
             <tr>
-                <td><%= index+1 %></td>
+                <td><%= index+1 %>.</td>
                 <td>
-                    <a href="">
+                    <a href='/manageschedules/<%=each.user_id%>'>
                         <%= each.firstname %>
                     </a>
                 </td>
                 <td>
                     <% each.user_schedule.map(schedule => {%>
-                        <p><%= schedule.day %></p>
-                        <p><%= schedule.start_time %></p>
-                        <p><%= schedule.end_time %></p>
+                        <p>Day: <%= schedule.day.days %>, Start_time: <%= schedule.start_time %>, End_time: <%= schedule.end_time %></p>
+                        <div class="bottom-line"></div>
                     <% }) %>
                 </td>
             </tr>

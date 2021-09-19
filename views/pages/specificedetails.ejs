@@ -1,1 +1,12 @@
-:TODO display the specific user details
+<%- include ('../partials/head') %> 
+<div class="specific-user">
+    <h2 class="specific-title">Details of the <%=data.firstname%> </h2>
+    <div class="specific-user-details">
+        <ul>
+            <li><p><strong>Firstname: </strong> <%=data.firstname %></p></li>
+            <li><p><strong>Lastname: </strong>  <%=data.surname%></p></li>
+            <li><p><strong>Email: </strong> <%=data.email%></p></li>
+        </ul>
+        
+    </div>
+</div>

@@ -1,4 +1,3 @@
-require('dotenv').config()    //requiring the .env file
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
@@ -39,7 +38,7 @@ app.use(session({
     name : 'mr_csid',
     resave : false,
     saveUninitialized : false,
-    secret : process.env.SECRET_SESS_KEY || 'lejncjksencc',
+    secret : `${process.env.SECRET_SESS_KEY}` || 'lejncjksencc',
     cookie :{
         maxAge : Time,
         sameSite : true,

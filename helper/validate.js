@@ -95,7 +95,7 @@ function validateSchedules(data) {
 
     start_at = timeConversion(start_at)
     end_at = timeConversion(end_at)
-    if (end_at < start_at) {
+    if (end_at && end_at < start_at) {
         errors.timeCheck = "It seems your schedule ends before starting time"
     }
 

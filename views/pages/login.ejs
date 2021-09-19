@@ -1,4 +1,3 @@
-<%- include ('../partials/head'); -%> 
 
 <div class="wrapper fadeInDown height">
     <div id="formContent">
@@ -23,7 +22,7 @@
             <input 
             type="text"
             id="login" 
-            class="fadeIn second <%=(typeof(errors) !== 'undefined')  ? (errors.email) ? 'input-error' : 'input-success' : '' %>" 
+            class="fadeIn second <%=(typeof(errors) !== 'undefined') ?  (errors.email) ? 'input-error' : 'input-success' : '' %>" 
             name="email" 
             placeholder="Email" 
             value="<%= typeof email !== 'undefined' ? email : '' %>"

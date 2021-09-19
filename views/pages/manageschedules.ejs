@@ -1,30 +1,33 @@
-<div>
-    <% if(typeof message !== undefined){ %>
-        <p style="color : red;"><%= message%></p>
-    <%}%>
+<%- include ('../partials/head') %> 
+<div class="manage-schedules">
+    <div  >
+        <% if(typeof message !== undefined){ %>
+            <p class="msg" style="color : green;"><%= message%></p>
+        <%}%>
+    </div>
+    <div class="details-table">
+        <table class="text-center">
+            <tr>
+                <th colspan="4"><%=user[0].firstname%>'s Schedule</th>
+            </tr>
+            <tr>
+                <th>S.N</th>
+                <th>Day:</th>
+                <th>Start_time:</th>
+                <th>End_time:</th>
+            </tr>
+            <% schedules.forEach((schedule,index) => { %>
+                <tr>
+                    <td><%= index+1%></td>
+                    <td><%= schedule.day.days%></td>
+                    <td><%= schedule.start_time%></td>
+                    <td><%= schedule.end_time%></td>
+                </tr>
+        
+            <%})%> 
+        </table>
+    </div>
+    <p class="new-schedule-p">To create a new schedule, please <a href="/manageschedules/new" class="new-schedule-a">Click Here</a></p>
 </div>
-<table>
-    <caption><%=user%></caption>
-    <tr>
-        <th>schedule_id</th>
-        <th>user_id</th>
-        <th>Day</th>
-        <th>Start_time:</th>
-        <th>End_time:</th>
-    </tr>
-    <% schedules.forEach((schedule,index) => { %>
-        <tr>
-            <td><%= schedule.schedule_id%></td>
-            <td><%= schedule.user_id%></td>
-            <td><%= schedule.day.days%></td>
-            <td><%= schedule.start_time%></td>
-            <td><%= schedule.end_time%></td>
-        </tr>
 
-    <%})%>
-    
-</table>
 
-<a href='/manageschedules/new'>create a new schedule</a><br>
-<a href='/'>back to dashboard</a><br>
-<a href='/logout'>Logout</a>
