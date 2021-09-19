@@ -4,15 +4,12 @@
   border:1px solid red;
 } */
 
-html {
-    background-color: #d6ebf3;
-  }
-  
+
   body {
     font-family: "Poppins", sans-serif;
-    height: 100vh;
-    background: rgb(0,0,0);
-    background: linear-gradient(120deg, rgba(0,0,0,1) 5%, rgba(255,255,255,0) 50%, rgba(139,89,63,1) 92%);
+    /* height: 100vh; */
+    /* background: rgb(0,0,0); */
+    /* background: linear-gradient(120deg, rgba(0,0,0,1) 5%, rgba(255,255,255,0) 50%, rgba(139,89,63,1) 92%); */
   }
   
   a {
@@ -38,18 +35,18 @@ html {
   
   .wrapper {
     background-color: #d6ebf3;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     display: flex;
     align-items: center;
     flex-direction: column; 
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 20px;
   }
 
   .wrapper.height{
-    height: 100%;
+    height: 100vh;
   }
   
   #formContent {
@@ -105,14 +102,130 @@ html {
     margin-top:20px;
   }
 
-  .manage-schedules{
-    color: white;
+  
+
+  
+
+  /* displaying the specific user details */
+  .specific-user{
+    margin: 20px auto;
   }
 
-  .schedule-page{
-    color:white;
+  .specific-title{
+    text-align: center;
+    color: black;
   }
+
+  .nav-bar{
+    background-color: rgb(92, 86, 84);
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding:20px 20px;
+
+  }
+
+  .item-1{
+    margin-right:auto;
+  }
+
+  .nav-bar a{
+    cursor: pointer;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: large;
+    padding-right:20px;
+    padding-left:20px;
+    /* margin-right:50px; */
+  }
+
+  .nav-bar a:hover{
+    border-bottom: 2px solid blue;
+  }
+
+  /* table */
+  .details-table{
+    margin:20px auto;
+    max-width:800px;
+
+  }
+
+  .details-table, .details-table a{
+    color: rgb(46, 46, 47);
+    
+  }
+
+  .details-table a{
+    text-decoration:underline;
+  }
+
+  .details-table p{
+    color: black;
+  }
+
+  table {
+    
+    width:100%;
+    border-collapse: collapse;
+}
+
+
+table tr th,
+table tr td {
+    border: 1px solid #333;
+    padding: 4px 5px;
+}
+
+
+/* schedule-form */
+.schedule-page input, .schedule-page select{
+  height: 40px;
+}
+.schedule-form{
+  /* border: 2px solid black; */
+  width:40%;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+
+.schedule-form-items{
+  display: flex;
+  flex-direction: column;
+  margin-bottom:20px;
+  /* width: 100%; */
+  /* justify-self: center; */
+
+}
+
+.new-schedule-a{
+  color: blue;
+}
+.new-schedule-p{
+  color: black;
+  margin-left:35vw;
+}
+
+.msg{
+  margin-top:20px;
+  text-align: center;
+}
+
+.text-center{
+  text-align: center;
+}
+
   
+
+
+
+ 
+
+  
+
   
   
   /* TABS */

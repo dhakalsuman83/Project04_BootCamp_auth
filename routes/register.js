@@ -7,7 +7,9 @@ const { validateRegister } = require('../helper/validate');
 
 //get route for register which will display te gegistration form
 router.get('/', (req, res) => {
-    res.render('./pages/register')
+    res.render('./pages/register', {
+        title:"Register"
+    })
 })
 
 //post route for register which will register the users
@@ -23,7 +25,8 @@ router.post('/', (req, res) => {
             email,
             password,
             password2,
-            errors
+            errors,
+            title:"Register"
         })
         
     }
@@ -40,7 +43,8 @@ router.post('/', (req, res) => {
                     email,
                     password,
                     password2,
-                    errors: { email :'Email already exists' }
+                    errors: { email: 'Email already exists' },
+                    title:"Register"
                 })
             } else {
                 //3. if everything is fine, store the data in the database

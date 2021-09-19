@@ -5,7 +5,9 @@ const router = express.Router();
 const { validateLoginCredentials } = require('../helper/validate')
 
 router.get('/', (req, res) => {
-    res.render('./pages/login')
+    res.render('./pages/login', {
+        title:"Login"
+    })
 })
 
 //login credentials
@@ -24,7 +26,8 @@ router.post('/', (req, res) => {
         return res.render('./pages/login', {
             errors,
             email,
-            password
+            password,
+            title:"Login"
         })
     }
     //trimming email as we have stored the trimmed email in the database
@@ -36,7 +39,8 @@ router.post('/', (req, res) => {
            // console.log(data)
             if (!data) {
                 return res.render('./pages/login', {
-                    errMessage:'Email is not registered'
+                    errMessage: 'Email is not registered',
+                    title:"Login"
                 })
             } else {
                 // console.log(data.password)
@@ -48,7 +52,8 @@ router.post('/', (req, res) => {
                        // console.log(result)
                         if (!result) {
                             res.render('./pages/login', {
-                                errMessage: 'Email or password does not match'
+                                errMessage: 'Email or password does not match',
+                                title:"Login"
                             })
                         } else {
                             req.session.userId = data.user_id

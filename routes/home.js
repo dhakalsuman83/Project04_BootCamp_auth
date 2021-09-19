@@ -5,6 +5,7 @@ const userDetails = require('../middlewares/userDetails');
 const router = express.Router();
 const weekDays = require('../helper/weekdays');
 const { validateSchedules } = require('../helper/validate');
+const { application } = require('express');
 
 router.use(userDetails,routeToLogin)
 
@@ -12,7 +13,7 @@ router.get('/', async (req, res,next) => {
     try {
         //  console.log({isshome:req.user})
     // console.log(res.locals)
-    const users = res.locals.user
+    const users = res.locals.user 
     //console.log(users)
         const allSchedules = await db.any('SELECT users.user_id,users.surname,users.firstname,schedules.start_time,schedules.end_time,schedules.day FROM users INNER JOIN schedules ON users.user_id = schedules.user_id')
         const groupsSchedules = []
@@ -28,10 +29,16 @@ router.get('/', async (req, res,next) => {
                 groupsSchedules.push(data)
             }
         })
+        groupsSchedules.forEach(schedule => {
+            schedule.user_schedule.forEach(nn => {
+                nn.day = weekDays.find(day => nn.day == day.id )
+            })
+        })
     res.render('./pages/home', {
         user: users,
         allSchedules,
-        groupsSchedules
+        groupsSchedules,
+        title:'Dashboard'
     })
     } catch (err) {
         console.log(err)
@@ -50,8 +57,8 @@ router.get('/manageschedules', async (req, res) => {
         const users = res.locals.user
         res.render('./pages/manageschedules', {
             schedules,
-            user: users[0].firstname,
-            message: req.query.message
+            message: req.query.message,
+            title:"schedule management"
         })
     } catch (err) {
         console.log(err)
@@ -62,7 +69,9 @@ router.get('/manageschedules', async (req, res) => {
 router.get('/manageschedules/new', async (req, res) => {
     try {
         res.render('./pages/scheduleform', {
-            weeks: weekDays
+            user: res.locals.user,
+            weeks: weekDays,
+            title:"schedule-form"
         })
     } catch (err) {
         console.log(err)
@@ -78,11 +87,13 @@ router.post('/manageschedules/new', async (req, res) => {
 
         if (Object.keys(errors).length) {
             return res.render('./pages/scheduleform', {
+                user: res.locals.user,
                 day,
                 start_at,
                 end_at,
                 weeks: weekDays,
-                errors
+                errors,
+                title:"schedule-form"
             })
         }
 
@@ -95,6 +106,23 @@ router.post('/manageschedules/new', async (req, res) => {
         res.send(err)
     }
 
+})
+
+router.get('/manageschedules/:id', async(req, res) => {
+    try {
+        tempId = req.params.id
+        const data = await db.any('SELECT surname,firstname,email FROM users WHERE user_id = $1;', tempId)
+        //console.log(data)
+        res.render('./pages/specificedetails', {
+            user: res.locals.user,
+            data: data[0],
+            title:"specific details of the user"
+        })
+    }
+    catch (err) {
+        console.log(err)
+        res.send(err)
+    }
 })
 
 router.use(function (req, res) {
