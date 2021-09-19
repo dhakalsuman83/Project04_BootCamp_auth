@@ -6,6 +6,7 @@ const { validateLoginCredentials } = require('../helper/validate')
 
 router.get('/', (req, res) => {
     res.render('./pages/login', {
+        message:req.query.message,
         title:"Login"
     })
 })

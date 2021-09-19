@@ -18,6 +18,11 @@
         <%}%>
     </div>
     <form action="/login" method="POST" class="login-form">
+        <div>
+            <% if(typeof message !== 'undefined'){ %>
+                <p style="color :green;"><%= message%></p>
+            <%}%>
+        </div>
         <div class="form-items">
             <input 
             type="text"
